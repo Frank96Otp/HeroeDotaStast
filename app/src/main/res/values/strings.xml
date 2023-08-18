@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DotaHeroStats</string>
+    <string name="password">password</string>
+    <string name="email">Email</string>
+    <string name="login">Login</string>
+    <string name="sing_up">Sing Up</string>
+    <string name="login_with_google">Login with Google</string>
+
+    <string name="key_google">111485064642141750369</string>
+
+</resources>

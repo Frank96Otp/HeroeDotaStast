@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/heroes"
+        android:title="Heroes"
+        android:icon="@drawable/ic_heroe"/>
+
+    <item android:id="@+id/favorities"
+        android:title="Favorites"
+        android:icon="@drawable/ic_favoritos"/>
+
+    <item android:id="@+id/cloud"
+        android:title="Nube"
+        android:icon="@drawable/ic_cloud"/>
+
+</menu>
