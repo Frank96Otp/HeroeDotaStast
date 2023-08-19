@@ -13,6 +13,7 @@ import androidx.core.widget.addTextChangedListener
 import com.example.dotaherostats.databinding.ActivityLoginBinding
 import com.example.dotaherostats.onboarding.Onbording
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
@@ -81,9 +82,9 @@ class Login : AppCompatActivity() {
         }
 
         binding.btnSignUp.setOnClickListener {
-            val email = binding.etEmail.text.toString()
-            val password = binding.etPassword.text.toString()
-            signUpWithFirebase(email, password)
+
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
 
         }
     }
@@ -106,20 +107,26 @@ class Login : AppCompatActivity() {
     }
 
     private fun signinWithGoogle() {
-        TODO("Not yet implemented")
+        val googleSingInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.key_google))
+            .requestEmail()
+            .build()
+        val googleClient = GoogleSignIn.getClient(this, googleSingInOptions)
+        val intent = googleClient.signInIntent
+        googleLauncher.launch(intent)
     }
 
     private fun signInWithFirebas(email: String, password: String) {
-        TODO("Not yet implemented")
+            if(validateEmailPassword(email,password)){
+
+            }
     }
 
-    private fun signUpWithFirebase(email: String, password: String) {
-        TODO("Not yet implemented")
-    }
+
 
 
     private fun goToMenu() {
-        val intent = Intent(this, Onbording::class.java)
+        val intent = Intent(this, BottonNavigationMain::class.java)
         startActivity(intent)
         finish()
     }

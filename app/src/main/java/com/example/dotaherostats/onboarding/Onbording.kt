@@ -1,5 +1,6 @@
 package com.example.dotaherostats.onboarding
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -8,6 +9,7 @@ import androidx.appcompat.widget.ListPopupWindow.WRAP_CONTENT
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.example.dotaherostats.Login
 import com.example.dotaherostats.R
 import com.example.dotaherostats.databinding.ActivityOnbordingBinding
 
@@ -68,6 +70,22 @@ class Onbording : AppCompatActivity() {
 
         indicatorsContainer = findViewById(R.id.indicatorConteiner)
 
+
+        binding.btnGetStardOnbording.setOnClickListener {
+            navigateToMain()
+        }
+
+        binding.imageNext.setOnClickListener {
+            if(binding.onboardingViewPager.currentItem + 1  < onboardingAdapter.itemCount){
+                binding.onboardingViewPager.currentItem += 1
+            }else{
+                navigateToMain()
+            }
+        }
+
+        binding.txtSkip.setOnClickListener {
+            navigateToMain()
+        }
 
 
     }
@@ -135,6 +153,10 @@ class Onbording : AppCompatActivity() {
         }
     }
 
-
+    private fun navigateToMain(){
+        var intent = Intent(this, Login::class.java)
+        startActivity(intent)
+        finish()
+    }
 
 }
