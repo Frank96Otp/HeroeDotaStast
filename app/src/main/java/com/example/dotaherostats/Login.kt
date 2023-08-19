@@ -118,7 +118,16 @@ class Login : AppCompatActivity() {
 
     private fun signInWithFirebas(email: String, password: String) {
             if(validateEmailPassword(email,password)){
+                    firebaseAuth.signInWithEmailAndPassword(email,password)
+                        .addOnCompleteListener(this) {
+                            if(it.isSuccessful){
+                                val user = firebaseAuth.currentUser
+                                goToMenu()
+                            }else{
+                                Toast.makeText(this,"Email o Password incorrectos",Toast.LENGTH_LONG).show()
+                            }
 
+                        }
             }
     }
 

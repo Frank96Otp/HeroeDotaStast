@@ -13,4 +13,8 @@
         android:title="Nube"
         android:icon="@drawable/ic_cloud"/>
 
+    <item android:id="@+id/closeSession"
+        android:title="Nube"
+        android:icon="@drawable/ic_logout"/>
+
 </menu>

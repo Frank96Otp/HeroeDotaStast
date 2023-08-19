@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/graph_heroe"
+    app:startDestination="@+id/heroes">
+
+    <fragment
+        android:id="@+id/heroes"
+        android:name="com.example.dotaherostats.fragments.HeroeFragment"
+        android:label="fragment_heroe"
+        tools:layout="@layout/fragment_heroe" />
+    <fragment
+        android:id="@+id/favorities"
+        android:name="com.example.dotaherostats.fragments.Favorites_Heroes_Fragment"
+        android:label="fragment_favorites__heroes_"
+        tools:layout="@layout/fragment_favorites__heroes_" />
+    <fragment
+        android:id="@+id/cloud"
+        android:name="com.example.dotaherostats.fragments.Save_Cloud_Fragment"
+        android:label="fragment_save__cloud_"
+        tools:layout="@layout/fragment_save__cloud_" />
+    <fragment
+        android:id="@+id/closeSession"
+        android:name="com.example.dotaherostats.fragments.Logout_Fragment"
+        android:label="fragment_logout_"
+        tools:layout="@layout/fragment_logout_" />
+</navigation>
