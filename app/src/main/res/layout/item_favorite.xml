@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="300dp"
+    android:layout_marginVertical="16dp"
+    android:layout_marginHorizontal="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@color/md_theme_light_primary"
+        android:layout_height="match_parent"    >
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_middle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.45"
+            />
+
+        <ImageView
+            android:id="@+id/image_heroe"
+            android:layout_width="253dp"
+            android:layout_height="185dp"
+            android:contentDescription="@null"
+            android:src="@drawable/heroe_dota2"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_middle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+
+            android:background="@color/md_theme_light_primaryContainer"
+
+
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="48dp"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="24dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline_middle">
+            <TextView
+                android:layout_marginTop="32dp"
+                android:layout_width="wrap_content"
+
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:text="Nombre"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/txt_nombre"
+                android:layout_width="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="Nombre del heroe"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:text="Atributo Primario"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/txt_descripcion"
+                android:layout_width="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="Atributo Primario"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginTop="32dp"
+                android:layout_width="wrap_content"
+
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:text="Tipo de ataque"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/txt_ataque"
+                android:layout_width="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="Tipo de ataque"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginTop="32dp"
+                android:layout_width="wrap_content"
+
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:text="Roles"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/txt_roles"
+                android:layout_width="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="Nombre de los roles"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <TextView
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:background="@drawable/item_detail_background2"
+            android:id="@+id/txt_puntuacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:paddingVertical="16dp"
+            android:paddingHorizontal="24dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_middle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline_middle"
+            tools:text="5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/item_detail_background2"
+            android:padding="10dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="20dp"
+            android:text="Heroe Id:"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold"
+
+            app:layout_constraintBottom_toTopOf="@+id/guideline_middle"
+            app:layout_constraintEnd_toStartOf="@+id/txt_puntuacion"
+            app:layout_constraintHorizontal_bias="0.913"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline_middle"
+            app:layout_constraintVertical_bias="0.638" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
