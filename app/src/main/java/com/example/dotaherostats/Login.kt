@@ -121,7 +121,7 @@ class Login : AppCompatActivity() {
                     firebaseAuth.signInWithEmailAndPassword(email,password)
                         .addOnCompleteListener(this) {
                             if(it.isSuccessful){
-                                val user = firebaseAuth.currentUser
+
                                 goToMenu()
                             }else{
                                 Toast.makeText(this,"Email o Password incorrectos",Toast.LENGTH_LONG).show()

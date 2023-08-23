@@ -5,56 +5,67 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.dotaherostats.R
+import com.example.dotaherostats.databinding.FragmentSaveCloudBinding
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Save_Cloud_Fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Save_Cloud_Fragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
+    private  lateinit var firestor:  FirebaseFirestore
+    private lateinit var  binding:  FragmentSaveCloudBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_save__cloud_, container, false)
+        firestor =  Firebase.firestore
+        binding = FragmentSaveCloudBinding.inflate(layoutInflater , container ,false)
+
+
+
+
+        binding.btnRegisterProduct.setOnClickListener {
+
+            val name_heroe =  binding.tilNameHero.editText?.text.toString()
+            val main_rol_heroe =  binding.tilMainRol.editText?.text.toString()
+            val base_int =  binding.tilBaseInt.editText?.text.toString()
+            val base_agi =  binding.tilBaseAgi.editText?.text.toString()
+            val base_str =  binding.tilBaseStr.editText?.text.toString()
+
+            if(name_heroe.isNotEmpty() && main_rol_heroe.isNotEmpty() && base_int.isNotEmpty() && base_agi.isNotEmpty() && base_str.isNotEmpty()){
+                addHeroeFireStore(name_heroe,main_rol_heroe , base_int.toDouble() , base_agi.toDouble() , base_str.toDouble())
+            }
+        }
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Save_Cloud_Fragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Save_Cloud_Fragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun addHeroeFireStore(nameHeroe: String, mainRolHeroe: String, base_int: Double, base_agi: Double, base_str: Double) {
+
+        val heroe =  hashMapOf<String, Any>(
+            "name_heroe" to nameHeroe,
+            "main_rol_heroe" to mainRolHeroe,
+            "base_int" to base_int,
+            "base_agi" to base_agi,
+            "base_str" to base_str
+        )
+
+        firestor.collection("heroes").add(heroe).
+                addOnSuccessListener {
+                    Toast.makeText(binding.btnRegisterProduct.context ,   "Producto Agregado: ${it.id}"  ,Toast.LENGTH_LONG ).show()
                 }
-            }
+                .addOnFailureListener {
+                    Toast.makeText(binding.btnRegisterProduct.context ,   "No fue agregado el producto"  ,Toast.LENGTH_LONG ).show()
+                }
     }
+
+
 }
