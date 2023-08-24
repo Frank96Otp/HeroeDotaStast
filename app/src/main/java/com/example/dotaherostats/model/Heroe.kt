@@ -14,6 +14,4 @@ data class Heroe(
     @SerializedName("base_health"       ) var baseHealth      : Int?              = null,
     @SerializedName("base_health_regen" ) var baseHealthRegen : Int?              = null,
     @SerializedName("base_mana"         ) var baseMana        : Int?              = null
-
 )
-
