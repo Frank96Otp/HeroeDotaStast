@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -43,6 +44,7 @@ class Login : AppCompatActivity() {
                         val account = task.getResult(ApiException::class.java)
                         authFireBAseWithGoogle(account.idToken)
                     } catch (e: Exception) {
+                        Toast.makeText(this,"error en el lanuncher desalida", Toast.LENGTH_LONG).show()
                     }
                 }
             }
@@ -91,15 +93,17 @@ class Login : AppCompatActivity() {
 
 
     private fun authFireBAseWithGoogle(idToken: String?) {
+        Log.i("idToken", idToken!!)
         var authCredential = GoogleAuthProvider.getCredential(idToken!!, null)
         firebaseAuth.signInWithCredential(authCredential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user = firebaseAuth.currentUser
+                    goToMenu()
                     with(sharePreferences.edit()) {
                         putString(EMAIL_DATA, user?.email).commit()
                     }
-                    goToMenu()
+
                 } else {
                     Toast.makeText(this, "Ocurrio un error", Toast.LENGTH_LONG).show()
                 }
@@ -108,7 +112,7 @@ class Login : AppCompatActivity() {
 
     private fun signinWithGoogle() {
         val googleSingInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.key_google))
+            .requestIdToken(getString(R.string.key_google))//validadar token
             .requestEmail()
             .build()
         val googleClient = GoogleSignIn.getClient(this, googleSingInOptions)
@@ -126,7 +130,6 @@ class Login : AppCompatActivity() {
                             }else{
                                 Toast.makeText(this,"Email o Password incorrectos",Toast.LENGTH_LONG).show()
                             }
-
                         }
             }
     }
