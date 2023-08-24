@@ -56,13 +56,15 @@ class Login : AppCompatActivity() {
             }
 
         sharePreferences = this.getSharedPreferences(SESSION_PREFERENS_KEY, Context.MODE_PRIVATE)
-        val email = sharePreferences.getString(EMAIL_DATA, "")
 
-        if (email != null) {
-            if (email.isNotEmpty()) {
-                goToMenu()
-            }
+        val email = sharePreferences.getString(EMAIL_DATA, "")?: ""
+
+
+        if (email.isNotEmpty()) {
+            goToMenu()
         }
+
+
 
         setViews()
 
@@ -141,7 +143,10 @@ class Login : AppCompatActivity() {
                     firebaseAuth.signInWithEmailAndPassword(email,password)
                         .addOnCompleteListener(this) {
                             if(it.isSuccessful){
-
+                                val user = firebaseAuth.currentUser
+                                with(sharePreferences.edit()){
+                                    putString(EMAIL_DATA, user?.email).commit()
+                                }
                                 goToMenu()
                             }else{
                                 Toast.makeText(this,"Email o Password incorrectos",Toast.LENGTH_LONG).show()
