@@ -9,16 +9,22 @@ import android.util.Patterns
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.widget.addTextChangedListener
 import com.example.dotaherostats.databinding.ActivityLoginBinding
 import com.example.dotaherostats.onboarding.Onbording
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
+
+
 
 class Login : AppCompatActivity() {
 
@@ -32,7 +38,7 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val swDarkMode = findViewById<SwitchMaterial>(R.id.swDarkMode)
         firebaseAuth = Firebase.auth
 
         googleLauncher =
@@ -57,6 +63,16 @@ class Login : AppCompatActivity() {
         }
 
         setViews()
+
+        swDarkMode.setOnCheckedChangeListener { _, isSelected ->
+            if (isSelected){
+                enableDarkMode()
+            }else{
+                disableDarkMode()
+            }
+        }
+
+
     }
 
 
@@ -148,4 +164,22 @@ class Login : AppCompatActivity() {
         const val SESSION_PREFERENS_KEY = "SESSION_PREFERENS_KEY"
         const val EMAIL_DATA = "EMAIL_DATA"
     }
+
+    private fun enableDarkMode(){
+        AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
+        delegate.applyDayNight()
+    }
+
+    private fun disableDarkMode(){
+        AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
+        delegate.applyDayNight()
+    }
+
+
 }
+
+
+
+
+
+

@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".Login">
 
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/swDarkMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints" />
+
     <TextView
         android:id="@+id/tvLoginTittle"
         android:layout_width="wrap_content"
@@ -40,6 +47,7 @@
         app:layout_constraintBottom_toTopOf="@id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 
 
     <com.google.android.material.button.MaterialButton
